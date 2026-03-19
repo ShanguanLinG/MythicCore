@@ -21,14 +21,14 @@ public final class MythicCoreCommand implements CommandExecutor {
             }
             try {
                 plugin.reloadMythicCore();
-                sender.sendMessage("§aMythicCore reloaded.");
+                sender.sendMessage("§a已重载配置。");
             } catch (Throwable t) {
-                sender.sendMessage("§cReload failed: " + t.getClass().getSimpleName());
+                sender.sendMessage("§c重载失败: " + t.getClass().getSimpleName());
             }
             return true;
         }
 
-        sender.sendMessage("§eUsage: /" + label + " reload");
+        sender.sendMessage("§cUsage: /" + label + " reload");
         return true;
     }
 }
