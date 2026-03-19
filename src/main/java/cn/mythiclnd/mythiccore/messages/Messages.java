@@ -26,8 +26,10 @@ public final class Messages {
     }
 
     public void reload() {
-        plugin.saveResource("message.yml", false);
         this.file = new File(plugin.getDataFolder(), "message.yml");
+        if (!this.file.exists()) {
+            plugin.saveResource("message.yml", false);
+        }
         this.cfg = YamlConfiguration.loadConfiguration(this.file);
     }
 
@@ -148,4 +150,3 @@ public final class Messages {
         return Collections.unmodifiableMap(m);
     }
 }
-
