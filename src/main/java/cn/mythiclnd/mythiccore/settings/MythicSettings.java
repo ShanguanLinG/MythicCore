@@ -20,6 +20,8 @@ public final class MythicSettings {
     public final Set<String> tabCompleteBlacklistPrefixesLower;
     public final Set<String> tabCompleteWhitelistPrefixesLower;
 
+    public final boolean fakeAntiCheatEnabled;
+
     public final boolean pluginsCommandEnabled;
     public final String pluginsCommandBypassPermission;
     public final Set<String> pluginsCommandsLower;
@@ -32,6 +34,7 @@ public final class MythicSettings {
             String tabCompleteModeLower,
             Set<String> tabCompleteBlacklistPrefixesLower,
             Set<String> tabCompleteWhitelistPrefixesLower,
+            boolean fakeAntiCheatEnabled,
             boolean pluginsCommandEnabled,
             String pluginsCommandBypassPermission,
             Set<String> pluginsCommandsLower,
@@ -43,6 +46,7 @@ public final class MythicSettings {
         this.tabCompleteModeLower = tabCompleteModeLower;
         this.tabCompleteBlacklistPrefixesLower = tabCompleteBlacklistPrefixesLower;
         this.tabCompleteWhitelistPrefixesLower = tabCompleteWhitelistPrefixesLower;
+        this.fakeAntiCheatEnabled = fakeAntiCheatEnabled;
         this.pluginsCommandEnabled = pluginsCommandEnabled;
         this.pluginsCommandBypassPermission = pluginsCommandBypassPermission;
         this.pluginsCommandsLower = pluginsCommandsLower;
@@ -63,6 +67,8 @@ public final class MythicSettings {
 
         Set<String> tabBlacklist = normalizePrefixList(cfg.getStringList("tab-complete.blacklist"));
         Set<String> tabWhitelist = normalizePrefixList(cfg.getStringList("tab-complete.whitelist"));
+
+        boolean fakeAntiCheatEnabled = cfg.getBoolean("fakeanticheat", false);
 
         boolean plEnabled = cfg.getBoolean("plugins-command.enabled", true);
         String plBypass = cfg.getString("plugins-command.bypass-permission", "mythiccore.bypass.pluginslist");
@@ -97,6 +103,7 @@ public final class MythicSettings {
                 tabModeLower,
                 tabBlacklist,
                 tabWhitelist,
+                fakeAntiCheatEnabled,
                 plEnabled,
                 plBypass,
                 Collections.unmodifiableSet(cmdLower),

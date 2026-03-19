@@ -1,5 +1,6 @@
 package cn.mythiclnd.mythiccore.listeners;
 
+import cn.mythiclnd.mythiccore.messages.Messages;
 import cn.mythiclnd.mythiccore.settings.MythicSettings;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -10,16 +11,19 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public final class PluginsCommandListener implements Listener {
     private final MythicSettings settings;
+    private final Messages messages;
     private static final String COLOR_ENABLED = "\u00A7a";
     private static final String COLOR_DISABLED = "\u00A7c";
 
-    public PluginsCommandListener(MythicSettings settings) {
+    public PluginsCommandListener(MythicSettings settings, Messages messages) {
         this.settings = settings;
+        this.messages = messages;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -37,8 +41,6 @@ public final class PluginsCommandListener implements Listener {
         if (!settings.pluginsCommandsLower.contains(root)) return;
 
         event.setCancelled(true);
-
-        String prefix = settings.pluginsPrefix;
 
         List<String> shown = new ArrayList<>();
         Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
@@ -64,7 +66,19 @@ public final class PluginsCommandListener implements Listener {
             shown.add(color + display);
         }
 
-        String out = prefix.replace("%count%", String.valueOf(shown.size())) + join(shown, "§f, ");
+        String separator = messages.get("plugins.separator");
+        String list = join(shown, separator);
+
+        String out;
+        if (messages.has("plugins.list-format")) {
+            Map<String, String> ph = new HashMap<String, String>();
+            ph.put("%count%", String.valueOf(shown.size()));
+            ph.put("%list%", list);
+            out = messages.format("plugins.list-format", ph);
+        } else {
+            // Backward-compat fallback to config.yml prefix if message.yml lacks plugins.list-format.
+            out = settings.pluginsPrefix.replace("%count%", String.valueOf(shown.size())) + list;
+        }
         player.sendMessage(out);
     }
 

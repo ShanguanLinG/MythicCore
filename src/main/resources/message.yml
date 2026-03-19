@@ -1,0 +1,51 @@
+# All messages support & color codes.
+
+reload:
+  no-permission: "&c你没有权限执行这个命令。"
+  success: "&a已重载配置。"
+  failed: "&c重载失败: %error%"
+
+plugins:
+  # Supports: %count%, %list%
+  list-format: "&fPlugins (%count%): %list%"
+  separator: "&f, "
+
+# FakeAntiCheat (commands are intercepted only when config.yml -> fakeanticheat: true)
+fakeac:
+  aac:
+    lines:
+      - "&6 AAC&fLicenced to https://spigotmc.org/members/980462"
+      - "&6 AAC&fAAC&74.4.2&f~konsolas"
+  ncp:
+    lines:
+      - "&fAdministrative commands overview:"
+      - "&f/ncp top (entries) (check/s...) (sort by...) NEW"
+      - "&f/ncp info (player: Violation summary for a player.)"
+      - "&f/ncp inspect (player): Status info for a player."
+      - "&f/ncp notify on|off: In-game notifications per player."
+      - "&f/ncp removeplayer (player) [(check type)]: Remove data."
+      - "&f/ncp reload: Reload the configuration."
+      - "&f/ncp lag: Lag-related info."
+      - "&f/ncp version: Version information"
+      - "&f/ncp commands: List all commands, adds rarely used ones."
+  verus:
+    lines:
+      - "&cYou do not have permission to perform this command."
+  spartan:
+    lines:
+      - "&4Spartan Anti-Cheat &8[&7(&fVersion: Build 442&7)&8] [&7(&fID: 980462/1132701857&7)&8]"
+  acr:
+    lines:
+      - "&7Running &6AntiCheatReloaded &7version 1.9.8"
+  anticheat:
+    lines:
+      - "&7Running &6AntiCheatReloaded &7version 1.9.8"
+  bac:
+    lines:
+      - "&eBAC&7 BetterAntiCheat v1.0.4&a by LiquidDev"
+  vulcan:
+    lines:
+      - "&cYou don't have permission to execute this command!"
+  betteranticheat:
+    lines:
+      - "&eBAC&7 BetterAntiCheat v1.0.4&a by LiquidDev"

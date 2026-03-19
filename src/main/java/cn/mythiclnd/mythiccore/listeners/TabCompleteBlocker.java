@@ -75,12 +75,24 @@ public final class TabCompleteBlocker {
     }
 
     private static boolean shouldBlock(String inputLower, MythicSettings settings) {
+        // Always allow tab completion for MythicCore's own command so `/mythiccore reload` can be completed.
+        if (startsWithRootCommand(inputLower, "mythiccore") || startsWithRootCommand(inputLower, "mc")) {
+            return false;
+        }
         if ("whitelist".equals(settings.tabCompleteModeLower)) {
             // Allow only whitelisted prefixes; block all other commands.
             return !matchesAnyPrefix(inputLower, settings.tabCompleteWhitelistPrefixesLower);
         }
         // blacklist (default): block only when a blacklist prefix matches.
         return matchesAnyPrefix(inputLower, settings.tabCompleteBlacklistPrefixesLower);
+    }
+
+    private static boolean startsWithRootCommand(String inputLower, String rootLower) {
+        String prefix = "/" + rootLower;
+        if (!inputLower.startsWith(prefix)) return false;
+        if (inputLower.length() == prefix.length()) return true;
+        char next = inputLower.charAt(prefix.length());
+        return next == ' ' || next == ':';
     }
 
     private static boolean matchesAnyPrefix(String inputLower, Set<String> prefixesLower) {

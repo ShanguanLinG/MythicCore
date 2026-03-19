@@ -22,6 +22,9 @@ tab-complete:
   #     - "/r"
   whitelist: [ ]
 
+# Fake AntiCheat command responder. When disabled, commands will fall through and show vanilla "Unknown command".
+fakeanticheat: false
+
 plugins-command:
   enabled: true
   bypass-permission: "mythiccore.bypass.pluginslist"
@@ -40,5 +43,7 @@ plugins-command:
   #     "Matrix": "Vulcan"
   #     "GrimAC": "-"     # hide
   replacements: { }
-  # Supports: %count%
+  # (Migrated) This was used for /pl output prefix before message.yml existed.
+  # Now /pl output is controlled by message.yml -> plugins.list-format and plugins.separator.
+  # This key is kept for backward-compatibility only (unused unless plugins.list-format is missing).
   prefix: "&fPlugins (%count%): "
