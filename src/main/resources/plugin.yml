@@ -1,0 +1,22 @@
+name: MythicCore
+version: '${version}'
+main: cn.mythiclnd.mythiccore.MythicCore
+load: STARTUP
+depend: [ProtocolLib]
+
+commands:
+  mythiccore:
+    description: MythicCore main command
+    aliases: [mc]
+    usage: "/<command> reload"
+
+permissions:
+  mythiccore.bypass.tabcomplete:
+    description: Allows using command tab completion even when MythicCore blocks it
+    default: op
+  mythiccore.bypass.pluginslist:
+    description: Allows using the original /pl output (MythicCore will not override)
+    default: op
+  mythiccore.admin.reload:
+    description: Allows reloading MythicCore configuration
+    default: op
