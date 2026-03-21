@@ -1,49 +1,25 @@
 tab-complete:
   enabled: true
-  bypass-permission: "mythiccore.bypass.tabcomplete"
-  # mode:
-  #   blacklist: allow by default, block when input starts with any prefix in blacklist
-  #   whitelist: block by default, allow only when input starts with any prefix in whitelist
+  bypass-permission: "mythiccore.bypass.tab-complete"
+  # blacklist: 默认放行, 命中前缀时拦截。
+  # whitelist: 默认拦截, 只有命中前缀时放行。
   mode: "blacklist"
-  # Prefix list, case-insensitive. Entries without leading '/' will be normalized to start with '/'.
-  # Example (blacklist):
-  #   mode: "blacklist"
-  #   blacklist:
-  #     - "/pl"
-  #     - "/plugins"
-  #     - "/bukkit:"
-  blacklist: [ ]
-  #
-  # Example (whitelist):
-  #   mode: "whitelist"
-  #   whitelist:
-  #     - "/msg"
-  #     - "/tell"
-  #     - "/r"
-  whitelist: [ ]
+  blacklist-prefixes: [ ]
+  whitelist-prefixes: [ ]
 
-# Fake AntiCheat command responder. When disabled, commands will fall through and show vanilla "Unknown command".
-fakeanticheat: false
+fake-anti-cheat:
+  enabled: false
 
 plugins-command:
   enabled: true
-  bypass-permission: "mythiccore.bypass.pluginslist"
-  commands:
+  bypass-permission: "mythiccore.bypass.plugins-command"
+  aliases:
     - "pl"
     - "plugins"
     - "bukkit:pl"
     - "bukkit:plugins"
-
-  # Key: real plugin name (plugin.getDescription().getName())
+  # Key: 插件真实名称。
   # Value:
-  #   "" or "-" => hide this plugin from /pl list
-  #   otherwise => replace displayed plugin name (supports & color codes)
-  # Example:
-  #   replacements:
-  #     "Matrix": "Vulcan"
-  #     "GrimAC": "-"     # hide
+  #   "-" 或空串表示隐藏。
+  #   其他值表示替换显示名, 支持 & 颜色代码。
   replacements: { }
-  # (Migrated) This was used for /pl output prefix before message.yml existed.
-  # Now /pl output is controlled by message.yml -> plugins.list-format and plugins.separator.
-  # This key is kept for backward-compatibility only (unused unless plugins.list-format is missing).
-  prefix: "&fPlugins (%count%): "

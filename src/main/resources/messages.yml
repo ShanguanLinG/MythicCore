@@ -1,0 +1,56 @@
+# 所有消息支持 & 颜色代码。
+# 如果某条消息需要显示前缀, 请手动加入 {prefix} 占位符。
+# 下方示例消息默认不显式包含 {prefix}。
+
+prefix: "&8[&dMythicCore&8] &7"
+
+command:
+  no-permission: "&c你没有权限执行这个命令。"
+  unknown-sub-command: "&c未知子命令。"
+  reload:
+    success: "&a已重载配置。"
+    failed: "&c重载失败: %error%"
+
+plugins:
+  list-format: "&fPlugins (%count%): %list%"
+  separator: "&f, "
+
+fake-anti-cheat:
+  responses:
+    aac:
+      lines:
+        - "&6 AAC&fLicenced to https://spigotmc.org/members/980462"
+        - "&6 AAC&fAAC&74.4.2&f~konsolas"
+    ncp:
+      lines:
+        - "&fAdministrative commands overview:"
+        - "&f/ncp top (entries) (check/s...) (sort by...) NEW"
+        - "&f/ncp info (player: Violation summary for a player.)"
+        - "&f/ncp inspect (player): Status info for a player."
+        - "&f/ncp notify on|off: In-game notifications per player."
+        - "&f/ncp removeplayer (player) [(check type)]: Remove data."
+        - "&f/ncp reload: Reload the configuration."
+        - "&f/ncp lag: Lag-related info."
+        - "&f/ncp version: Version information"
+        - "&f/ncp commands: List all commands, adds rarely used ones."
+    verus:
+      lines:
+        - "&cYou do not have permission to perform this command."
+    spartan:
+      lines:
+        - "&4Spartan Anti-Cheat &8[&7(&fVersion: Build 442&7)&8] [&7(&fID: 980462/1132701857&7)&8]"
+    acr:
+      lines:
+        - "&7Running &6AntiCheatReloaded &7version 1.9.8"
+    anticheat:
+      lines:
+        - "&7Running &6AntiCheatReloaded &7version 1.9.8"
+    bac:
+      lines:
+        - "&eBAC&7 BetterAntiCheat v1.0.4&a by LiquidDev"
+    betteranticheat:
+      lines:
+        - "&eBAC&7 BetterAntiCheat v1.0.4&a by LiquidDev"
+    vulcan:
+      lines:
+        - "&cYou don't have permission to execute this command!"

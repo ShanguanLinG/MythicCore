@@ -7,32 +7,26 @@ version = '1.0'
 
 repositories {
     mavenCentral()
-    maven { name = "spigotmc-repo"; url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
-    // Required for some old Spigot transitive snapshot deps (e.g. bungeecord-chat:1.8-SNAPSHOT).
-    maven { name = "md5-snapshots"; url = "https://repo.md-5.net/content/repositories/snapshots/" }
-    // Extra safety net that also mirrors a lot of legacy artifacts.
-    maven { name = "papermc-public"; url = "https://repo.papermc.io/repository/maven-public/" }
-    // Used to pull ProtocolLib API from GitHub tags for old MC versions.
-    maven { name = "jitpack"; url = "https://jitpack.io" }
-    maven { name = "sonatype"; url = "https://oss.sonatype.org/content/groups/public/" }
-    // Fallback for older ProtocolLib artifacts if they are not resolvable from Maven Central in some environments.
-    maven { name = "dmulloy2-repo"; url = "https://repo.dmulloy2.net/repository/public/" }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://repo.md-5.net/content/repositories/snapshots/' }
+    maven { url = 'https://jitpack.io' }
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+    maven { url = 'https://repo.dmulloy2.net/repository/public/' }
 }
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
-    // ProtocolLib API for compilation only; runtime is provided by the ProtocolLib plugin on the server.
     compileOnly "com.github.dmulloy2:ProtocolLib:4.8.0"
 }
 
 java {
-    // Compile with JDK 17, but keep runtime bytecode compatible with Java 8.
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-    options.release.set(8)
+    options.release.set(17)
 }
 
 processResources {
@@ -45,6 +39,5 @@ processResources {
 }
 
 tasks.named('jar') {
-    // Don't include project version in the output jar filename.
     archiveFileName = "${project.name}.jar"
 }
